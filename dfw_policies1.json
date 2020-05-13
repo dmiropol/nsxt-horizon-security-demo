@@ -1,0 +1,364 @@
+{
+  "security-policies": [
+    {
+      "description": "",
+      "id": "Shared_Services",
+      "display_name": "Shared Services",
+      "category": "Infrastructure",
+      "rules": [
+        {
+          "description": "",
+          "id": "any-to-NTP",
+          "display_name": "any to NTP",
+          "sequence_number": 1,
+          "source_groups": [
+            "any"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_NTP"
+          ],
+          "services": [
+            "/infra/services/NTP"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "any-to-DHCP",
+          "display_name": "any to DHCP",
+          "sequence_number": 3,
+          "source_groups": [
+            "any"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_DHCP"
+          ],
+          "services": [
+            "/infra/services/DHCP-Client",
+            "/infra/services/DHCP-Server"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "any-to-DNS",
+          "display_name": "any to DNS",
+          "sequence_number": 5,
+          "source_groups": [
+            "any"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_DNS"
+          ],
+          "services": [
+            "/infra/services/DNS"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "any-to-SMTP",
+          "id": "any-to-SMTP",
+          "display_name": "any to SMTP",
+          "sequence_number": 6,
+          "source_groups": [
+            "any"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_SMTP"
+          ],
+          "services": [
+            "/infra/services/SMTP",
+            "/infra/services/SMTP_TLS",
+            "/infra/services/IMAP_SSL",
+            "/infra/services/POP3_SSL"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "any-to-AD",
+          "id": "any-to-AD",
+          "display_name": "any to AD",
+          "sequence_number": 7,
+          "source_groups": [
+            "any"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_AD"
+          ],
+          "services": [
+            "/infra/services/Microsoft_Active_Directory_V1"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "any-to-netbios",
+          "display_name": "any to netbios",
+          "sequence_number": 8,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "ANY"
+          ],
+          "services": [
+            "/infra/services/NetBios_Name_Service_(UDP)",
+            "/infra/services/NetBios_Datagram_(UDP)",
+            "/infra/services/NetBios_Name_Service_(TCP)",
+            "/infra/services/NetBios_Datagram_(TCP)",
+            "/infra/services/NetBios_Session_Service_(TCP)",
+            "/infra/services/NetBios_Session_Service_(UDP)"
+          ],
+          "action": "ALLOW"
+        }
+      ]
+    },
+    {
+      "description": "ALB services for VDI",
+      "id": "VDI_ALB_Services",
+      "display_name": "VDI ALB Services",
+      "category": "Infrastructure",
+      "rules": [
+        {
+          "description": "access-to-VIP",
+          "id": "access-to-VIP",
+          "display_name": "access to ALB VIP",
+          "sequence_number": 11,
+          "source_groups": [
+            "any"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_UAG_VIP"
+          ],
+          "services": [
+            "/infra/services/HTTP",
+            "/infra/services/HTTPS",
+            "/infra/services/VMware-View-PCoIP",
+            "/infra/services/VMware-View5.x-PCoIP-UDP",
+            "/infra/services/VDI_TCP_8443"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "ALB-to-CS",
+          "display_name": "ALB to CS",
+          "sequence_number": 12,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_ALB_SE"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_CS"
+          ],
+          "services": [
+            "/infra/services/VDI_Pool_in"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "cs-to-cs",
+          "display_name": "cs to cs",
+          "sequence_number": 13,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_CS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_CS"
+          ],
+          "services": [
+            "/infra/services/VDI_TCP_4101",
+            "/infra/services/LDAP",
+            "/infra/services/MS_RPC_TCP",
+            "/infra/services/MS_RPC_UDP",
+            "/infra/services/LDAP-UDP"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "cs-to-vcenter",
+          "display_name": "cs to vcenter",
+          "sequence_number": 14,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_CS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/vcenter"
+          ],
+          "services": [
+            "/infra/services/HTTPS"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "desktop-to-cs",
+          "display_name": "desktop to cs",
+          "sequence_number": 15,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_CS"
+          ],
+          "services": [
+            "/infra/services/VDI_Pool_out"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "uag-to-cs",
+          "display_name": "uag to cs",
+          "sequence_number": 16,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_UAG"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_CS"
+          ],
+          "services": [
+            "/infra/services/VDI_Pool_in"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "access-to-desktop",
+          "display_name": "access to desktop",
+          "sequence_number": 17,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "services": [
+            "/infra/services/VDI_Pool_in"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "id": "VDI_IceHRM",
+      "display_name": "VDI IceHRM",
+      "category": "Application",
+      "rules": [
+        {
+          "description": "",
+          "id": "allow-employees",
+          "display_name": "allow employees",
+          "sequence_number": 31,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI-Employee-AD"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hrm-web"
+          ],
+          "services": [
+            "/infra/services/HTTP"
+          ],
+          "profiles": [
+            "/infra/context-profiles/HTTP"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "web-to-db",
+          "display_name": "web to db",
+          "sequence_number": 32,
+          "source_groups": [
+            "/infra/domains/default/groups/hrm-web"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hrm-db"
+          ],
+          "services": [
+            "/infra/services/MySQL"
+          ],
+          "profiles": [
+            "/infra/context-profiles/MYSQL"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "id": "VDI_OpenMRS",
+      "display_name": "VDI OpenMRS",
+      "category": "Application",
+      "rules": [
+        {
+          "description": "",
+          "id": "allow-contractors",
+          "display_name": "allow contractors",
+          "sequence_number": 36,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI-Contractor-AD"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/mrs-web"
+          ],
+          "services": [
+            "/infra/services/Tomcat"
+          ],
+          "profiles": [
+            "/infra/context-profiles/HTTP"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "web-to-db",
+          "display_name": "web to db",
+          "sequence_number": 37,
+          "source_groups": [
+            "/infra/domains/default/groups/mrs-web"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/mrs-db"
+          ],
+          "services": [
+            "/infra/services/MySQL"
+          ],
+          "profiles": [
+            "/infra/context-profiles/MYSQL"
+          ],
+          "scope": [
+            "ANY"
+          ],
+          "action": "ALLOW"
+        }
+      ]
+    }
+  ]
+}

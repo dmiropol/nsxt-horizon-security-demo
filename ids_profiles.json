@@ -1,0 +1,66 @@
+{
+  "ids-profiles": [
+    {
+      "resource_type": "IdsProfile",
+      "id": "Production_Applications",
+      "display_name": "Production Applications",
+      "severities": [
+        {
+          "severity": "CRITICAL",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        },
+        {
+          "severity": "HIGH",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        },
+        {
+          "severity": "MEDIUM",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        },
+        {
+          "severity": "LOW",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ]
+    },
+    {
+      "resource_type": "IdsProfile",
+      "id": "VDI_Desktop",
+      "display_name": "VDI Desktop",
+      "severities": [
+        {
+          "severity": "CRITICAL",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        },
+        {
+          "severity": "HIGH",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        },
+        {
+          "severity": "MEDIUM",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        },
+        {
+          "severity": "LOW",
+          "marked_for_delete": false,
+          "overridden": false,
+          "_protection": "NOT_PROTECTED"
+        }
+      ]
+    }
+  ]
+}

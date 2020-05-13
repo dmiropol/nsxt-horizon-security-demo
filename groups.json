@@ -1,0 +1,197 @@
+{
+  "groups": [
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "172.25.16.9"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "",
+      "id": "VDI_NTP",
+      "display_name": "VDI NTP"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "172.25.16.9"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "",
+      "id": "VDI_DNS",
+      "display_name": "VDI DNS"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "172.25.16.9"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "",
+      "id": "VDI_SMTP",
+      "display_name": "VDI SMTP"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "100.96.0.1"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "",
+      "id": "VDI_DHCP",
+      "display_name": "VDI DHCP"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "172.25.16.9"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "",
+      "id": "VDI_AD",
+      "display_name": "VDI AD"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "192.168.204.150"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "ALB VIP for DMZ UAG",
+      "id": "VDI_UAG_VIP",
+      "display_name": "VDI UAG VIP"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "192.168.204.201",
+            "192.168.204.202",
+            "10.100.2.101",
+            "10.100.2.102"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "description": "",
+      "id": "VDI_CS",
+      "display_name": "VDI CS"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Name",
+          "operator": "CONTAINS",
+          "value": "vdidesktop",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "VDI_DESKTOPS",
+      "display_name": "VDI DESKTOPS"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "CONTAINS",
+          "value": "vdi_alb_se",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "VDI_ALB_SE",
+      "display_name": "VDI ALB SE"
+    },
+    {
+      "expression": [
+        {
+          "ip_addresses": [
+            "192.168.204.31",
+            "192.168.204.32",
+            "10.100.3.66",
+            "10.100.3.67"
+          ],
+          "resource_type": "IPAddressExpression"
+        }
+      ],
+      "id": "VDI_UAG",
+      "display_name": "VDI UAG"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "Environment|Production",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "Production_Applications",
+      "display_name": "Production Applications"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "vdi-contractors",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "VDI-Contractor-Pool",
+      "display_name": "VDI Contractor Pool"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "vdi-employees",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "VDI-Employee-Pool",
+      "display_name": "VDI Employee Pool"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "IOC|Trojan Activity",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "Compromised",
+      "display_name": "Compromised"
+    }
+  ]
+}

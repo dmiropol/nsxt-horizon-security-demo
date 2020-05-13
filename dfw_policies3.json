@@ -1,0 +1,38 @@
+{
+  "security-policies": [
+    {
+      "resource_type": "SecurityPolicy",
+      "id": "Quarantine",
+      "display_name": "Quarantine",
+      "category": "Emergency",
+      "rules": [
+        {
+          "action": "DROP",
+          "resource_type": "Rule",
+          "id": "Quarantine_Compromised_workloads",
+          "display_name": "Quarantine Compromised workloads",
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "ANY"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "logged": true,
+          "scope": [
+            "/infra/domains/default/groups/Compromised"
+          ],
+          "disabled": false
+        }
+      ],
+      "scope": [
+        "ANY"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "security-policies": [
+    {
+      "description": "environment for VDI deployment",
+      "id": "Horizon_Environment",
+      "display_name": "Horizon Environment",
+      "category": "Environment",
+      "rules": [
+        {
+          "description": "deny-self-VDI_pool",
+          "id": "deny-self-VDI_pool",
+          "display_name": "deny self VDI pool",
+          "sequence_number": 21,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "logged": true,
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "action": "REJECT"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "id": "VDI_IceHRM",
+      "display_name": "VDI IceHRM",
+      "category": "Application",
+      "rules": [
+        {
+          "description": "",
+          "id": "deny-others",
+          "display_name": "deny others",
+          "sequence_number": 33,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hrm-web",
+            "/infra/domains/default/groups/hrm-db"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "logged": true,
+          "action": "REJECT"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "id": "VDI_OpenMRS",
+      "display_name": "VDI OpenMRS",
+      "category": "Application",
+      "rules": [
+        {
+          "description": "",
+          "id": "deny-others",
+          "display_name": "deny others",
+          "sequence_number": 38,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/mrs-web",
+            "/infra/domains/default/groups/mrs-db"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "logged": true,
+          "action": "REJECT"
+        }
+      ]
+    }
+  ]
+}

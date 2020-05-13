@@ -1,0 +1,91 @@
+{
+  "services": [
+    {
+      "description": "",
+      "id": "VDI_TCP_8443",
+      "display_name": "VDI TCP 8443",
+      "service_entries": [
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "VDI_TCP_8443",
+          "destination_ports": [
+            "8443"
+          ],
+          "l4_protocol": "TCP"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "id": "VDI_TCP_4101",
+      "display_name": "VDI TCP 4101",
+      "service_entries": [
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "VDI_TCP_4101",
+          "destination_ports": [
+            "4101"
+          ],
+          "l4_protocol": "TCP"
+        }
+      ]
+    },
+    {
+      "description": "VDI_Pool_in",
+      "id": "VDI_Pool_in",
+      "display_name": "VDI Pool inbound",
+      "service_entries": [
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "TCP-in",
+          "destination_ports": [
+            "22443",
+            "32111",
+            "3389",
+            "4001",
+            "4002",
+            "4172",
+            "443",
+            "9427",
+            "56669"
+          ],
+          "l4_protocol": "TCP"
+        },
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "UDP-in",
+          "destination_ports": [
+            "22443",
+            "4172"
+          ],
+          "l4_protocol": "UDP"
+        }
+      ]
+    },
+    {
+      "description": "VDI_Pool_out",
+      "id": "VDI_Pool_out",
+      "display_name": "VDI Pool outbound",
+      "service_entries": [
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "TCP-out",
+          "destination_ports": [
+            "443",
+            "80",
+            "4172"
+          ],
+          "l4_protocol": "TCP"
+        },
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "UDP-out",
+          "destination_ports": [
+            "4172"
+          ],
+          "l4_protocol": "UDP"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "ids-rules": [
+    {
+      "resource_type": "IdsSecurityPolicy",
+      "id": "Production_Applications_IDS",
+      "display_name": "Production Applications IDS",
+      "rules": [
+        {
+          "action": "DETECT",
+          "ids_profiles": [
+            "/infra/settings/firewall/security/intrusion-services/profiles/Production_Applications"
+          ],
+          "resource_type": "IdsRule",
+          "id": "All_Prod_Apps",
+          "display_name": "All Prod Apps",
+          "sequence_number": 10,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "ANY"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "logged": false,
+          "scope": [
+            "/infra/domains/default/groups/Production_Applications"
+          ],
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "resource_type": "IdsSecurityPolicy",
+      "id": "Desktop_Pools_IDS",
+      "display_name": "Desktop Pools IDS",
+      "rules": [
+        {
+          "action": "DETECT",
+          "ids_profiles": [
+            "/infra/settings/firewall/security/intrusion-services/profiles/VDI_Desktop"
+          ],
+          "resource_type": "IdsRule",
+          "id": "All_Pools",
+          "display_name": "All Pools",
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "ANY"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI-Contractor-Pool",
+            "/infra/domains/default/groups/VDI-Employee-Pool"
+          ],
+          "disabled": false,
+          "sequence_number": 11
+        }
+      ]
+    }
+  ]
+}
