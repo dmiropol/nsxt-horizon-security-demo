@@ -4,7 +4,7 @@
       "expression": [
         {
           "ip_addresses": [
-            "172.25.16.9"
+            "192.168.110.10"
           ],
           "resource_type": "IPAddressExpression"
         }
@@ -12,12 +12,12 @@
       "description": "",
       "id": "VDI_NTP",
       "display_name": "VDI NTP"
-    },
+    }, 
     {
       "expression": [
         {
           "ip_addresses": [
-            "172.25.16.9"
+            "192.168.110.10"
           ],
           "resource_type": "IPAddressExpression"
         }
@@ -25,25 +25,12 @@
       "description": "",
       "id": "VDI_DNS",
       "display_name": "VDI DNS"
-    },
+    }, 
     {
       "expression": [
         {
           "ip_addresses": [
-            "172.25.16.9"
-          ],
-          "resource_type": "IPAddressExpression"
-        }
-      ],
-      "description": "",
-      "id": "VDI_SMTP",
-      "display_name": "VDI SMTP"
-    },
-    {
-      "expression": [
-        {
-          "ip_addresses": [
-            "100.96.0.1"
+            "192.168.110.10"
           ],
           "resource_type": "IPAddressExpression"
         }
@@ -51,12 +38,12 @@
       "description": "",
       "id": "VDI_DHCP",
       "display_name": "VDI DHCP"
-    },
+    }, 
     {
       "expression": [
         {
           "ip_addresses": [
-            "172.25.16.9"
+            "192.168.110.10"
           ],
           "resource_type": "IPAddressExpression"
         }
@@ -69,23 +56,20 @@
       "expression": [
         {
           "ip_addresses": [
-            "192.168.204.150"
+            "192.168.110.22"
           ],
           "resource_type": "IPAddressExpression"
         }
       ],
-      "description": "ALB VIP for DMZ UAG",
-      "id": "VDI_UAG_VIP",
-      "display_name": "VDI UAG VIP"
-    },
+      "description": "",
+      "id": "vCenter",
+      "display_name": "vCenter"
+    }, 
     {
       "expression": [
         {
           "ip_addresses": [
-            "192.168.204.201",
-            "192.168.204.202",
-            "10.100.2.101",
-            "10.100.2.102"
+            "192.168.110.145"
           ],
           "resource_type": "IPAddressExpression"
         }
@@ -93,49 +77,54 @@
       "description": "",
       "id": "VDI_CS",
       "display_name": "VDI CS"
-    },
+    }, 
     {
       "expression": [
         {
           "member_type": "VirtualMachine",
           "key": "Name",
           "operator": "CONTAINS",
-          "value": "vdidesktop",
+          "value": "-IC",
           "resource_type": "Condition"
         }
       ],
       "resource_type": "Group",
       "id": "VDI_DESKTOPS",
-      "display_name": "VDI DESKTOPS"
-    },
+      "display_name": "VDI Desktops"
+    }, 
     {
-      "expression": [
+      "extended_expression": [
         {
-          "member_type": "VirtualMachine",
-          "key": "Tag",
-          "operator": "CONTAINS",
-          "value": "vdi_alb_se",
-          "resource_type": "Condition"
-        }
-      ],
-      "resource_type": "Group",
-      "id": "VDI_ALB_SE",
-      "display_name": "VDI ALB SE"
-    },
-    {
-      "expression": [
-        {
-          "ip_addresses": [
-            "192.168.204.31",
-            "192.168.204.32",
-            "10.100.3.66",
-            "10.100.3.67"
+          "identity_groups": [
+            {
+              "distinguished_name": "CN=Clinicians,CN=Users,DC=corp,DC=local",
+              "domain_base_distinguished_name": "DC=Corp,DC=local"
+            }
           ],
-          "resource_type": "IPAddressExpression"
+          "resource_type": "IdentityGroupExpression",
+          "marked_for_delete": false
         }
       ],
-      "id": "VDI_UAG",
-      "display_name": "VDI UAG"
+      "resource_type": "Group",
+      "id": "Clinicians-AD",
+      "display_name": "Clinicians AD"
+    }, 
+    {
+      "extended_expression": [
+        {
+          "identity_groups": [
+            {
+              "distinguished_name": "CN=HR,CN=Users,DC=corp,DC=local",
+              "domain_base_distinguished_name": "DC=Corp,DC=local"
+            }
+          ],
+          "resource_type": "IdentityGroupExpression",
+          "marked_for_delete": false
+        }
+      ],
+      "resource_type": "Group",
+      "id": "HR-users-AD",
+      "display_name": "HR Users AD"
     },
     {
       "expression": [
@@ -143,13 +132,13 @@
           "member_type": "VirtualMachine",
           "key": "Tag",
           "operator": "EQUALS",
-          "value": "Environment|Production",
+          "value": "HR-users-IC",
           "resource_type": "Condition"
         }
       ],
       "resource_type": "Group",
-      "id": "Production_Applications",
-      "display_name": "Production Applications"
+      "id": "HR-users-IC",
+      "display_name": "HR Users IC"
     },
     {
       "expression": [
@@ -157,13 +146,26 @@
           "member_type": "VirtualMachine",
           "key": "Tag",
           "operator": "EQUALS",
-          "value": "vdi-contractors",
+          "value": "Clinician-IC",
           "resource_type": "Condition"
         }
       ],
       "resource_type": "Group",
-      "id": "VDI-Contractor-Pool",
-      "display_name": "VDI Contractor Pool"
+      "id": "Clinicians-IC",
+      "display_name": "Clinician IC"
+    },{
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "hr-web",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "hr-web",
+      "display_name": "HR web"
     },
     {
       "expression": [
@@ -171,13 +173,13 @@
           "member_type": "VirtualMachine",
           "key": "Tag",
           "operator": "EQUALS",
-          "value": "vdi-employees",
+          "value": "hr-app",
           "resource_type": "Condition"
         }
       ],
       "resource_type": "Group",
-      "id": "VDI-Employee-Pool",
-      "display_name": "VDI Employee Pool"
+      "id": "hr-app",
+      "display_name": "HR app"
     },
     {
       "expression": [
@@ -185,13 +187,55 @@
           "member_type": "VirtualMachine",
           "key": "Tag",
           "operator": "EQUALS",
-          "value": "IOC|Trojan Activity",
+          "value": "hr-db",
           "resource_type": "Condition"
         }
       ],
       "resource_type": "Group",
-      "id": "Compromised",
-      "display_name": "Compromised"
+      "id": "hr-db",
+      "display_name": "HR db"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "fuji-web",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "fuji-web",
+      "display_name": "fuji web"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "fuji-app",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "fuji-app",
+      "display_name": "fuji app"
+    },
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "fuji-db",
+          "resource_type": "Condition"
+        }
+      ],
+      "resource_type": "Group",
+      "id": "fuji-db",
+      "display_name": "fuji db"
     }
   ]
 }

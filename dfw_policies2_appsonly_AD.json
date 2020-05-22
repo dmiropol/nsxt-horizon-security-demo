@@ -1,0 +1,246 @@
+{
+  "security-policies": [
+  
+    {
+      "description": "",
+      "id": "VDI_fuji",
+      "display_name": "VDI fuji",
+      "category": "Application",
+      "rules": [
+        {
+          "description": "",
+          "id": "allow-clinicians",
+          "display_name": "allow clinicians",
+          "sequence_number": 41,
+          "source_groups": [
+            "/infra/domains/default/groups/Clinicians-AD"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/fuji-web"
+          ],
+          "services": [
+            "/infra/services/HTTP"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "web-to-app",
+          "display_name": "web to app",
+          "sequence_number": 42,
+          "source_groups": [
+            "/infra/domains/default/groups/fuji-web"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/fuji-app"
+          ],
+          "services": [
+            "/infra/services/HTTP"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/fuji-web",
+            "/infra/domains/default/groups/fuji-app"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "app-to-db",
+          "display_name": "app to db",
+          "sequence_number": 43,
+          "source_groups": [
+            "/infra/domains/default/groups/fuji-app"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/fuji-db"
+          ],
+          "services": [
+            "/infra/services/MySQL"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/fuji-app",
+            "/infra/domains/default/groups/fuji-db"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "deny-others",
+          "display_name": "deny others",
+          "sequence_number": 44,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/fuji-web",
+            "/infra/domains/default/groups/fuji-app",
+            "/infra/domains/default/groups/fuji-db"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "logged": true,
+          "action": "REJECT"
+        },
+        {
+          "description": "",
+          "id": "vdi-rule",
+          "display_name": "vdi rule",
+          "sequence_number": 45,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/fuji-web"
+          ],
+          "services": [
+            "/infra/services/HTTP"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/fuji-web"
+          ],
+          "action": "ALLOW"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "id": "VDI_HR",
+      "display_name": "VDI HR",
+      "category": "Application",
+      "rules": [
+        {
+          "description": "",
+          "id": "allow-HR-users",
+          "display_name": "allow HR users",
+          "sequence_number": 31,
+          "source_groups": [
+            "/infra/domains/default/groups/HR-users-AD"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hr-web"
+          ],
+          "services": [
+            "/infra/services/HTTP",
+            "/infra/services/HTTPS"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "web-to-app",
+          "display_name": "web to app",
+          "sequence_number": 32,
+          "source_groups": [
+            "/infra/domains/default/groups/hr-web"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hr-app"
+          ],
+          "services": [
+            "/infra/services/TCP-8443"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/hr-web",
+            "/infra/domains/default/groups/hr-app"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "app-to-db",
+          "display_name":  "app to db",
+          "sequence_number": 33,
+          "source_groups": [
+            "/infra/domains/default/groups/hr-app"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hr-db"
+          ],
+          "services": [
+            "/infra/services/MySQL"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/hr-db",
+            "/infra/domains/default/groups/hr-app"
+          ],
+          "action": "ALLOW"
+        },
+        {
+          "description": "",
+          "id": "deny-others",
+          "display_name": "deny others",
+          "sequence_number": 34,
+          "source_groups": [
+            "ANY"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hr-web",
+            "/infra/domains/default/groups/hr-db"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "logged": true,
+          "action": "REJECT"
+        },
+        {
+          "description": "",
+          "id": "vdi-rule",
+          "display_name": "vdi rule",
+          "sequence_number": 35,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/hr-web"
+          ],
+          "services": [
+            "/infra/services/HTTP",
+            "/infra/services/HTTPS"
+          ],
+          "profiles": [
+            "ANY"
+          ],
+          "scope": [
+            "/infra/domains/default/groups/hr-web"
+          ],
+          "action": "ALLOW"
+        }
+      ]
+    }
+  ]
+}

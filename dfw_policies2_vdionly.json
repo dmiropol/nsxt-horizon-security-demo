@@ -1,0 +1,32 @@
+{
+  "security-policies": [
+    {
+      "description": "environment for VDI deployment",
+      "id": "Horizon_Environment",
+      "display_name": "Horizon Environment",
+      "category": "Environment",
+      "rules": [
+        {
+          "description": "deny-self-VDI_pool",
+          "id": "deny-self-VDI_pool",
+          "display_name": "deny self VDI pool",
+          "sequence_number": 21,
+          "source_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "destination_groups": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "services": [
+            "ANY"
+          ],
+          "logged": true,
+          "scope": [
+            "/infra/domains/default/groups/VDI_DESKTOPS"
+          ],
+          "action": "REJECT"
+        }
+      ]
+    }
+  ]
+}

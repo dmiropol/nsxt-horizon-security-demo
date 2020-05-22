@@ -56,25 +56,6 @@
           "action": "ALLOW"
         },
         {
-          "description": "any-to-SMTP",
-          "id": "any-to-SMTP",
-          "display_name": "any to SMTP",
-          "sequence_number": 6,
-          "source_groups": [
-            "any"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/VDI_SMTP"
-          ],
-          "services": [
-            "/infra/services/SMTP",
-            "/infra/services/SMTP_TLS",
-            "/infra/services/IMAP_SSL",
-            "/infra/services/POP3_SSL"
-          ],
-          "action": "ALLOW"
-        },
-        {
           "description": "any-to-AD",
           "id": "any-to-AD",
           "display_name": "any to AD",
@@ -114,21 +95,21 @@
       ]
     },
     {
-      "description": "ALB services for VDI",
-      "id": "VDI_ALB_Services",
-      "display_name": "VDI ALB Services",
+      "description": "VDI services",
+      "id": "VDI_Services",
+      "display_name": "VDI Services",
       "category": "Infrastructure",
       "rules": [
         {
-          "description": "access-to-VIP",
-          "id": "access-to-VIP",
-          "display_name": "access to ALB VIP",
+          "description": "access-to-VDI_CS",
+          "id": "access-to-VDI_CS",
+          "display_name": "access to VDI CS",
           "sequence_number": 11,
           "source_groups": [
             "any"
           ],
           "destination_groups": [
-            "/infra/domains/default/groups/VDI_UAG_VIP"
+            "/infra/domains/default/groups/VDI_CS"
           ],
           "services": [
             "/infra/services/HTTP",
@@ -136,22 +117,6 @@
             "/infra/services/VMware-View-PCoIP",
             "/infra/services/VMware-View5.x-PCoIP-UDP",
             "/infra/services/VDI_TCP_8443"
-          ],
-          "action": "ALLOW"
-        },
-        {
-          "description": "",
-          "id": "ALB-to-CS",
-          "display_name": "ALB to CS",
-          "sequence_number": 12,
-          "source_groups": [
-            "/infra/domains/default/groups/VDI_ALB_SE"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/VDI_CS"
-          ],
-          "services": [
-            "/infra/services/VDI_Pool_in"
           ],
           "action": "ALLOW"
         },
@@ -181,13 +146,13 @@
         {
           "description": "",
           "id": "cs-to-vcenter",
-          "display_name": "cs to vcenter",
+          "display_name": "cs to vCenter",
           "sequence_number": 14,
           "source_groups": [
             "/infra/domains/default/groups/VDI_CS"
           ],
           "destination_groups": [
-            "/infra/domains/default/groups/vcenter"
+            "/infra/domains/default/groups/vCenter"
           ],
           "services": [
             "/infra/services/HTTPS"
@@ -204,25 +169,6 @@
           "sequence_number": 15,
           "source_groups": [
             "/infra/domains/default/groups/VDI_DESKTOPS"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/VDI_CS"
-          ],
-          "services": [
-            "/infra/services/VDI_Pool_out"
-          ],
-          "scope": [
-            "ANY"
-          ],
-          "action": "ALLOW"
-        },
-        {
-          "description": "",
-          "id": "uag-to-cs",
-          "display_name": "uag to cs",
-          "sequence_number": 16,
-          "source_groups": [
-            "/infra/domains/default/groups/VDI_UAG"
           ],
           "destination_groups": [
             "/infra/domains/default/groups/VDI_CS"
@@ -248,110 +194,6 @@
           ],
           "services": [
             "/infra/services/VDI_Pool_in"
-          ],
-          "scope": [
-            "ANY"
-          ],
-          "action": "ALLOW"
-        }
-      ]
-    },
-    {
-      "description": "",
-      "id": "VDI_IceHRM",
-      "display_name": "VDI IceHRM",
-      "category": "Application",
-      "rules": [
-        {
-          "description": "",
-          "id": "allow-employees",
-          "display_name": "allow employees",
-          "sequence_number": 31,
-          "source_groups": [
-            "/infra/domains/default/groups/VDI-Employee-AD"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/hrm-web"
-          ],
-          "services": [
-            "/infra/services/HTTP"
-          ],
-          "profiles": [
-            "/infra/context-profiles/HTTP"
-          ],
-          "scope": [
-            "ANY"
-          ],
-          "action": "ALLOW"
-        },
-        {
-          "description": "",
-          "id": "web-to-db",
-          "display_name": "web to db",
-          "sequence_number": 32,
-          "source_groups": [
-            "/infra/domains/default/groups/hrm-web"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/hrm-db"
-          ],
-          "services": [
-            "/infra/services/MySQL"
-          ],
-          "profiles": [
-            "/infra/context-profiles/MYSQL"
-          ],
-          "scope": [
-            "ANY"
-          ],
-          "action": "ALLOW"
-        }
-      ]
-    },
-    {
-      "description": "",
-      "id": "VDI_OpenMRS",
-      "display_name": "VDI OpenMRS",
-      "category": "Application",
-      "rules": [
-        {
-          "description": "",
-          "id": "allow-contractors",
-          "display_name": "allow contractors",
-          "sequence_number": 36,
-          "source_groups": [
-            "/infra/domains/default/groups/VDI-Contractor-AD"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/mrs-web"
-          ],
-          "services": [
-            "/infra/services/Tomcat"
-          ],
-          "profiles": [
-            "/infra/context-profiles/HTTP"
-          ],
-          "scope": [
-            "ANY"
-          ],
-          "action": "ALLOW"
-        },
-        {
-          "description": "",
-          "id": "web-to-db",
-          "display_name": "web to db",
-          "sequence_number": 37,
-          "source_groups": [
-            "/infra/domains/default/groups/mrs-web"
-          ],
-          "destination_groups": [
-            "/infra/domains/default/groups/mrs-db"
-          ],
-          "services": [
-            "/infra/services/MySQL"
-          ],
-          "profiles": [
-            "/infra/context-profiles/MYSQL"
           ],
           "scope": [
             "ANY"

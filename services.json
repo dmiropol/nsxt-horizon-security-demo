@@ -17,6 +17,21 @@
     },
     {
       "description": "",
+      "id": "Tomcat",
+      "display_name": "Tomcat",
+      "service_entries": [
+        {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": "Tomcat",
+          "destination_ports": [
+            "8080"
+          ],
+          "l4_protocol": "TCP"
+        }
+      ]
+    },
+    {
+      "description": "",
       "id": "VDI_TCP_4101",
       "display_name": "VDI TCP 4101",
       "service_entries": [
@@ -73,6 +88,8 @@
           "destination_ports": [
             "443",
             "80",
+            "4001",
+            "4002",
             "4172"
           ],
           "l4_protocol": "TCP"
