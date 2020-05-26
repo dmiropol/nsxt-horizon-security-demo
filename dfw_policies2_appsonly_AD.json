@@ -206,6 +206,7 @@
           ],
           "destination_groups": [
             "/infra/domains/default/groups/hr-web",
+            "/infra/domains/default/groups/hr-app",
             "/infra/domains/default/groups/hr-db"
           ],
           "services": [
